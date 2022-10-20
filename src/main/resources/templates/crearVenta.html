@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VENTA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+	<div class="col-sm-6">
+			<form th:action="@{/saveVenta}" th:object=${venta} method="POST">
+				<div class="card">
+					<div class="card-header">
+					<h3>Modulo Ventas</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<input th:field="*{id}" type="hidden" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>CLIENTE</label><a th:href="@{/newCliente}"><i class="fas fa-plus" style="color:black; margin-left: 27rem;"></i></a>
+							<select th:field="*{cliente}"  class="form-select"  aria-label="Default select example">
+							  <option th:each="clientes:${listCliente}"
+							  		th:value="${clientes.id}"
+							  		th:text="${clientes.cuil}"
+							  />
+							  
+							</select>
+						</div>
+						<div class="form-group">
+							<label>EMPLEADO</label><a th:href="@{/newEmpleado}"><i class="fas fa-plus" style="color:black; margin-left: 26rem;"></i></a>
+							<select th:field="*{empleado}"  class="form-select"  aria-label="Default select example">
+							  <option th:each="empleados:${listEmpleado}"
+							  		th:value="${empleados.id}"
+							  		th:text="${empleados.nombre}"
+							  />
+							  
+							</select>
+						</div>
+						<div class="form-group">
+							<label>AUTO</label><a th:href="@{/newAuto}"><i class="fas fa-plus" style="color:black; margin-left: 28rem;"></i></a>
+							<select th:field="*{auto}"  class="form-select"  aria-label="Default select example">
+							  <option th:each="autos:${listAuto}"
+							  		th:value="${autos.id}"
+							  		th:text="${autos.modelo.nombre}"
+							  />
+							  
+							</select>
+						</div>
+						<div class="form-group">
+							<label>CANTIDAD</label>
+							<input th:field="*{cantidad}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>PRECIO FINAL</label>
+							<input th:field="*{precioFinal}" type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="card-footer">
+					<!-- <input type="submit" value="Guardar" class="btn btn-success">-->
+					<button type="submit" class="btn btn-success mt-4"><i class="fas fa-save"></i> Guardar</button>
+					<a th:href="@{/listarVenta}" class="btn btn-danger mt-4"><i class="fas fa-times"></i> Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>  
+
+</body>
+</html>

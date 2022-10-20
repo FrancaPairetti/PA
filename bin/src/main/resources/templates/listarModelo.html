@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado Modelo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+		<div style="margin-bottom: 1rem; text-align: right;">
+			<a th:href="@{/newModelo}"class="btn btn-success"><i class="fas fa-plus-circle"></i> Agregar Modelo</a>
+			<a th:href="@{/menu}" class="btn btn-warning"><i class="fas fa-angle-double-left"></i> Volver</a>
+		</div>
+	
+		<table class="table">
+			<thead>
+			<tr>
+			<th style="background-color: #37bd004f;">ID</th>
+			<th style="background-color: #37bd004f;">NOMBRE</th>
+			<th style="background-color: #37bd004f;">TIPO MODELO</th>
+			<th style="background-color: #37bd004f;">MARCA</th>
+			<th style="background-color: #37bd004f;">ACCIONES</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr th:each="modelo:${modelo}">
+					<td th:text="${modelo.id}"></td>
+					<td th:text="${modelo.nombre}"></td>
+					<td th:text="${modelo.tipoModelo}"></td>
+					<td th:text="${modelo.marca.nombre}"></td>
+					<td>
+					<a th:href="@{/editarModelo/}+${modelo.id}" class="btn btn-primary btn-sm"><i class='fas fa-pencil-alt'></i></a>
+					<a  th:href="@{/eliminarModelo/}+${modelo.id}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

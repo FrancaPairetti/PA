@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AUTO</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+	<div class="col-sm-6">
+			<form th:action="@{/saveAuto}" th:object=${auto} method="POST">
+				<div class="card">
+					<div class="card-header">
+					<h3>Modulo Auto</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<input th:field="*{id}" type="hidden" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>AÑO</label>
+							<input th:field="*{ano}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>GAMA</label>
+							<select name="gama" id="gama" class="form-select" th:field="*{gama}" aria-label="Default select example">
+							  <option value="Baja">Baja</option>
+							  <option value="Intermedia">Intermedia</option>
+							  <option value="Alta">Alta</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>TIPO COMBUSTIBLE</label>
+							<select name="tipoCombustible" id="tipoCombustible" class="form-select" th:field="*{tipoCombustible}" aria-label="Default select example">
+							  <option value="Gasoil">Gasoil</option>
+							  <option value="Gas">Gas</option>
+							  <option value="Nafta">Nafta</option>
+							  <option value="NaftaGas">Nafta y Gas</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>COLOR</label>
+							<input th:field="*{color}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>ESTADO</label>
+							<select name="estado" id="estado" class="form-select" th:field="*{estado}" aria-label="Default select example">
+							  <option value="Nuevo">Nuevo</option>
+							  <option value="Usado-Nuevo">Usado como Nuevo</option>
+							  <option value="UsadoBE">Usado en Buen estado</option>
+							  <option value="Usado">Usado</option>
+							  <option value="UsadoME">Usado en Mal Estado</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>CANT PUERTAS</label>
+							<input th:field="*{cantPuertas}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>CANT KM</label>
+							<input th:field="*{cantKM}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>PRECIO COMPRA</label>
+							<input th:field="*{precioCosto}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>PRECIO VENTA</label>
+							<input th:field="*{precioVenta}" type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>MODELO</label><a th:href="@{/newModelo}"><i class="fas fa-plus" style="color:black; margin-left: 27rem;"></i></a>
+							<select th:field="*{modelo}"  class="form-select"  aria-label="Default select example">
+							  <option th:each="modelos:${listModelo}"
+							  		th:value="${modelos.id}"
+							  		th:text="${modelos.nombre}"
+							  />
+							  
+							</select>
+						</div>
+						<div class="form-group">
+							<label>IMPORTADO</label><a th:href="@{/newImp}"><i class="fas fa-plus" style="color:black; margin-left: 27rem;"></i></a>
+							<select th:field="*{importacion}"  class="form-select"  aria-label="Default select example">
+							  <option th:each="imp:${listImp}"
+							  		th:value="${imp.id}"
+							  		th:text="${imp.nombre}"
+							  />
+							  
+							</select>
+						</div>
+					</div>
+					
+					<div class="card-footer">
+					<!-- <input type="submit" value="Guardar" class="btn btn-success">-->
+					<button type="submit" class="btn btn-success mt-4"><i class="fas fa-save"></i> Guardar</button>
+					<a th:href="@{/listarAuto}" class="btn btn-danger mt-4"><i class="fas fa-times"></i> Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>  
+
+</body>
+</html>
