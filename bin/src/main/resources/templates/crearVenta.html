@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>VENTA</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+	    $( document ).ready(function() {
+	    });
+	 
+    </script>
+    
+<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<title>VENTA</title>
+
 </head>
 <body>
 <div class="container mt-4">
@@ -18,54 +31,190 @@
 						<div class="form-group">
 							<input th:field="*{id}" type="hidden" class="form-control"/>
 						</div>
-						<div class="form-group">
-							<label>CLIENTE</label><a th:href="@{/newCliente}"><i class="fas fa-plus" style="color:black; margin-left: 27rem;"></i></a>
-							<select th:field="*{cliente}"  class="form-select"  aria-label="Default select example">
-							  <option th:each="clientes:${listCliente}"
-							  		th:value="${clientes.id}"
-							  		th:text="${clientes.cuil}"
-							  />
-							  
-							</select>
+					<!-- CLIENTE -->
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>CLIENTE</label>
+									<select th:field="*{cliente}"  class="form-select" aria-label="Default select example" id='cliente' onchange='datosCliente(event)' >
+									  <option value="" hidden>Seleccione el cliente</option>
+									  <option th:each="clientes:${listCliente}"
+									  		th:nombre="${clientes.nombre}"
+									  		th:value="${clientes.id}"
+									  		th:text="${clientes.cuil}"
+									  />
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group" style="text-align:right;">
+									<a th:href="@{/newCliente}"><i class="fas fa-plus" style="color:black;"></i></a>
+									<input id="nombreCliente" type="text" class="form-control" disabled>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label>EMPLEADO</label><a th:href="@{/newEmpleado}"><i class="fas fa-plus" style="color:black; margin-left: 26rem;"></i></a>
-							<select th:field="*{empleado}"  class="form-select"  aria-label="Default select example">
-							  <option th:each="empleados:${listEmpleado}"
-							  		th:value="${empleados.id}"
-							  		th:text="${empleados.nombre}"
-							  />
-							  
-							</select>
+						
+						
+						<!-- EMPLEADO -->
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>EMPLEADO</label>
+									<select th:field="*{empleado}"  class="form-select"  aria-label="Default select example" onchange='datosEmpleado(event)'>
+									  <option value="" hidden>Seleccione un empleado</option>
+									  <option th:each="empleados:${listEmpleado}"
+									  		th:nombre="${empleados.nombre}"
+									  		th:value="${empleados.id}"
+									  		th:text="${empleados.cuit}"
+									  />
+									  
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group" style="text-align:right;">
+									<a th:href="@{/newEmpleado}"><i class="fas fa-plus" style="color:black;"></i></a>
+									<input id="nombreEmpleado" type="text" class="form-control" disabled>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label>AUTO</label><a th:href="@{/newAuto}"><i class="fas fa-plus" style="color:black; margin-left: 28rem;"></i></a>
-							<select th:field="*{auto}"  class="form-select"  aria-label="Default select example">
-							  <option th:each="autos:${listAuto}"
-							  		th:value="${autos.id}"
-							  		th:text="${autos.modelo.nombre}"
-							  />
-							  
-							</select>
+						
+						<!-- AUTO -->
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label>AUTO</label>
+									<select th:field="*{auto}"  class="form-select"  aria-label="Default select example" onchange='datosAuto(event)'>
+									  <option value="" hidden>Seleccione un auto</option>
+									  <option th:each="autos:${listAuto}"
+									  		th:marca="${autos.modelo.marca.nombre}"
+									  		th:valorimp="${autos.importacion.importe}"
+									  		th:combu="${autos.tipoCombustible}"
+									  		th:ano="${autos.ano}"
+									  		th:color="${autos.color}"
+									  		th:precioVen="${autos.precioVenta}"
+									  		
+									  		th:value="${autos.id}"
+									  		th:text="${autos.modelo.nombre}"
+									  />
+									  
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group" style="text-align:right;">
+									<a th:href="@{/newAuto}"><i class="fas fa-plus" style="color:black;"></i></a>
+									<input  id="nombreMarca"type="text" class="form-control" disabled>
+									<input id="precAuto" type="hidden" class="form-control"/>
+								</div>
+							</div>
+							<div class="col-sm-12 mt-2">
+								<div class="form-group" style="text-align:center;">
+									<table class="table" style="text-align: center;">
+									  <thead>
+									    <tr>
+									      <th scope="col" style="width:13%;"> % IMP</th>
+									      <th scope="col">COMBUSTIBLE</th>
+									      <th scope="col">AÑO</th>
+									      <th scope="col">COLOR</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr>
+									      <th><input id="importe" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00;text-align: center;"></th>
+									      <td><input id="combustible" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+									      <td><input id="añoAuto" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+									      <td><input id="colorAuto" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+									    </tr>
+									  </tbody>
+									</table>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
+							
+						
+						<div class="form-group mb-3">
 							<label>CANTIDAD</label>
-							<input th:field="*{cantidad}" type="text" class="form-control"/>
+							<input th:field="*{cantidad}" type="text" class="form-control" id="cantidad"/>
 						</div>
 						<div class="form-group">
 							<label>PRECIO FINAL</label>
-							<input th:field="*{precioFinal}" type="text" class="form-control"/>
+							<input th:field="*{precioFinal}" type="text" class="form-control" id="precio" disabled/>
 						</div>
 					</div>
 					<div class="card-footer">
 					<!-- <input type="submit" value="Guardar" class="btn btn-success">-->
-					<button type="submit" class="btn btn-success mt-4"><i class="fas fa-save"></i> Guardar</button>
+					<button type="button" class="btn btn-success mt-4 " data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-save"></i> Guardar</button>
 					<a th:href="@{/listarVenta}" class="btn btn-danger mt-4"><i class="fas fa-times"></i> Cancelar</a>
 					</div>
 				</div>
+				
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" style="background-color: #23cb23;color: white;">
+				      <div class="modal-body" >
+				        <strong><i class="far fa-check-circle"></i> | Registro almacenado con éxito!</strong>
+				      </div>
+				      <div class="modal-footer" style="padding:2px;">
+				        <button type="submit" class="btn" style="color: white;">Ok</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				
 			</form>
 		</div>
 	</div>  
-
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+	<script type="text/javascript">
+	//Iniciar pantalla 
+	
+	//Cargar datos de cliente
+		function datosCliente(e) {
+		    var nombre =  e.target.selectedOptions[0].getAttribute("nombre")
+		    document.getElementById("nombreCliente").value = nombre;
+		}
+		
+		//Cargar datos de empleado
+		function datosEmpleado(e) {
+		    var nombre =  e.target.selectedOptions[0].getAttribute("nombre")
+		    document.getElementById("nombreEmpleado").value = nombre;
+		}
+		
+		//Cargar datos del auto
+		function datosAuto(e) {
+		    var marca =  e.target.selectedOptions[0].getAttribute("marca")
+		    document.getElementById("nombreMarca").value = marca;
+		    var valorimp =  e.target.selectedOptions[0].getAttribute("valorimp")
+		    document.getElementById("importe").value = valorimp;
+		    var combu =  e.target.selectedOptions[0].getAttribute("combu")
+		    document.getElementById("combustible").value = combu;
+		    var ano =  e.target.selectedOptions[0].getAttribute("ano")
+		    document.getElementById("añoAuto").value = ano;
+		    var color =  e.target.selectedOptions[0].getAttribute("color")
+		    document.getElementById("colorAuto").value = color;
+		    var precioVen =  e.target.selectedOptions[0].getAttribute("precioVen")
+		    document.getElementById("precAuto").value = precioVen;
+		}
+		
+		//Calcular precio final 
+		var cambio = document.getElementById("cantidad");
+		cambio.addEventListener("focusout", calcularPrecio, true);
+		function calcularPrecio() {
+			var impuesto = $("#importe").val();
+			var precioAuto = $("#precAuto").val();
+			var cant =  $("#cantidad").val();
+			var calculo =(cant*precioAuto)+(((precioAuto/100)*impuesto)*cant);
+			document.getElementById("precio").value = calculo;
+			$("#precio").save();
+		}
+	</script>
+	
 </body>
 </html>

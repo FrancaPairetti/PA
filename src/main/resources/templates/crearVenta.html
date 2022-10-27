@@ -139,7 +139,7 @@
 						</div>
 						<div class="form-group">
 							<label>PRECIO FINAL</label>
-							<input th:field="*{precioFinal}" type="text" class="form-control" id="precio" disabled/>
+							<input th:field="*{precioFinal}" type="text" class="form-control" id="precio" readonly/>
 						</div>
 					</div>
 					<div class="card-footer">
@@ -212,7 +212,6 @@
 			var cant =  $("#cantidad").val();
 			var calculo =(cant*precioAuto)+(((precioAuto/100)*impuesto)*cant);
 			document.getElementById("precio").value = calculo;
-			$("#precio").save();
 		}
 	</script>
 	
