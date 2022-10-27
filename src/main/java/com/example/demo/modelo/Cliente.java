@@ -22,8 +22,6 @@ public class Cliente {
 		@Column
 		private String nombre;
 		@Column
-		private String apellido;
-		@Column
 		private String cuil;
 		@Column
 		private String direccion;
@@ -50,12 +48,6 @@ public class Cliente {
 		}
 		public void setNombre(String nombre) {
 			this.nombre = nombre;
-		}
-		public String getApellido() {
-			return apellido;
-		}
-		public void setApellido(String apellido) {
-			this.apellido = apellido;
 		}
 		public String getCuil() {
 			return cuil;

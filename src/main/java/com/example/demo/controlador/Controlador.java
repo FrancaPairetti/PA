@@ -285,4 +285,11 @@ public class Controlador {
 	}
 	
 	
+	@GetMapping("/ejemplo")
+	public String ejemplo() {
+
+		return "ejmplofiltro";
+	 }
+	
+	
 }

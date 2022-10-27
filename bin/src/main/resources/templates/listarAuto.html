@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Listado Auto</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -17,18 +17,17 @@
 			<thead>
 			<tr>
 			<th style="background-color: #37bd004f;">ID</th>
-			<th style="background-color: #37bd004f;">ANO</th>
+			<th style="background-color: #37bd004f;">AÑO</th>
 			<th style="background-color: #37bd004f;">GAMA</th>
 			<th style="background-color: #37bd004f;">TIPO COMBUSTIBLE</th>
 			<th style="background-color: #37bd004f;">COLOR</th>
 			<th style="background-color: #37bd004f;">ESTADO</th>
 			<th style="background-color: #37bd004f;">CANT PUERTAS</th>
-			<th style="background-color: #37bd004f;">KM</th>
 			<th style="background-color: #37bd004f;">PRECIO COMPRA</th>
 			<th style="background-color: #37bd004f;">PRECIO VENTA</th>
 			<th style="background-color: #37bd004f;">MODELO</th>
 			<th style="background-color: #37bd004f;">MARCA</th>
-			<th style="background-color: #37bd004f;">IMPORTACION</th>
+			<th style="background-color: #37bd004f;">IMPORTACIÓN</th>
 			<th style="background-color: #37bd004f;">ACCIONES</th>
 			</tr>
 			</thead>
@@ -41,7 +40,6 @@
 					<td th:text="${auto.color}"></td>
 					<td th:text="${auto.estado}"></td>
 					<td th:text="${auto.cantPuertas}"></td>
-					<td th:text="${auto.cantKM}"></td>
 					<td th:text="${auto.precioCosto}"></td>
 					<td th:text="${auto.precioVenta}"></td>
 					<td th:text="${auto.modelo.nombre}"></td>
