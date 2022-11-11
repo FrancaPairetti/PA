@@ -22,7 +22,7 @@
 <body>
 <div class="container mt-4">
 	<div class="col-sm-6">
-			<form th:action="@{/saveVenta}" th:object=${venta} method="POST">
+			<form th:action="@{/saveVenta}" th:object=${venta} method="POST" class="was-validated">
 				<div class="card">
 					<div class="card-header">
 					<h3>Modulo Ventas</h3>
@@ -35,8 +35,8 @@
 						<div class="row mb-3">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label>CLIENTE</label>
-									<select th:field="*{cliente}"  class="form-select" aria-label="Default select example" id='cliente' onchange='datosCliente(event)' >
+									<label class="form-label">CLIENTE</label>
+									<select th:field="*{cliente}"  class="form-select" required aria-label="Default select example" id='cliente' onchange='datosCliente(event)' >
 									  <option value="" hidden>Seleccione el cliente</option>
 									  <option th:each="clientes:${listCliente}"
 									  		th:nombre="${clientes.nombre}"
@@ -44,6 +44,7 @@
 									  		th:text="${clientes.cuil}"
 									  />
 									</select>
+									<div class="invalid-feedback">Por favor selesccione un cliente.</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -59,16 +60,16 @@
 						<div class="row mb-3">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label>EMPLEADO</label>
-									<select th:field="*{empleado}"  class="form-select"  aria-label="Default select example" onchange='datosEmpleado(event)'>
+									<label class="form-label" >EMPLEADO</label>
+									<select th:field="*{empleado}"  class="form-select"  id="empleado" aria-label="Default select example" onchange='datosEmpleado(event)' required>
 									  <option value="" hidden>Seleccione un empleado</option>
 									  <option th:each="empleados:${listEmpleado}"
 									  		th:nombre="${empleados.nombre}"
 									  		th:value="${empleados.id}"
 									  		th:text="${empleados.cuit}"
 									  />
-									  
 									</select>
+									<div class="invalid-feedback">Por favor selesccione un empleado.</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -83,8 +84,8 @@
 						<div class="row mb-3">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label>AUTO</label>
-									<select th:field="*{auto}"  class="form-select"  aria-label="Default select example" onchange='datosAuto(event)'>
+									<label  class="form-label">AUTO</label>
+									<select th:field="*{auto}"  class="form-select"  aria-label="Default select example" onchange='datosAuto(event)' required >
 									  <option value="" hidden>Seleccione un auto</option>
 									  <option th:each="autos:${listAuto}"
 									  		th:marca="${autos.modelo.marca.nombre}"
@@ -96,9 +97,9 @@
 									  		
 									  		th:value="${autos.id}"
 									  		th:text="${autos.modelo.nombre}"
-									  />
-									  
+									  /> 
 									</select>
+									<div class="invalid-feedback">Por favor selesccione un auto.</div>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -135,7 +136,7 @@
 						
 						<div class="form-group mb-3">
 							<label>CANTIDAD</label>
-							<input th:field="*{cantidad}" type="text" class="form-control" id="cantidad"/>
+							<input th:field="*{cantidad}" type="number" class="form-control" id="cantidad" required/>
 						</div>
 						<div class="form-group">
 							<label>PRECIO FINAL</label>
@@ -144,7 +145,7 @@
 					</div>
 					<div class="card-footer">
 					<!-- <input type="submit" value="Guardar" class="btn btn-success">-->
-					<button type="button" class="btn btn-success mt-4 " data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-save"></i> Guardar</button>
+					<button type="button" class="btn btn-success mt-4 " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-save"></i> Guardar</button>
 					<a th:href="@{/listarVenta}" class="btn btn-danger mt-4"><i class="fas fa-times"></i> Cancelar</a>
 					</div>
 				</div>
