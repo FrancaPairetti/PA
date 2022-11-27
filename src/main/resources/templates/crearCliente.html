@@ -26,7 +26,7 @@
 						</div>
 						<div class="form-group">
 							<label>NOMBRE COMPLETO</label>
-							<input th:field="*{nombre}" type="text" class="form-control"/>
+							<input th:field="*{nombre}" type="text" class="form-control" required pattern="[a-zA-Z]*"/>
 						</div>
 						<div class="form-group">
 							<label>CUIL</label>
@@ -38,7 +38,7 @@
 						</div>
 						<div class="form-group">
 							<label>EMAIL</label>
-							<input th:field="*{mail}" type="text" class="form-control"/>
+							<input th:field="*{mail}" type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
 						</div>
 						<div class="form-group">
 							<label>TELÉFONO</label>

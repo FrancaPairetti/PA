@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+
 
 @Entity
 @Table(name = "Cliente")
@@ -19,6 +22,7 @@ public class Cliente {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column
 		private int id;
+		//@NotEmpty
 		@Column
 		private String nombre;
 		@Column
