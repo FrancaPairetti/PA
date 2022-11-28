@@ -37,15 +37,9 @@ public class Controlador {
 	}
 
 	@GetMapping("/new")
-	public String agregar(Model model, @RequestParam String type) {
-		//System.out.println(type);
-		//if(type == "nashe") {
-		//	model.addAttribute("marca", new Marca());
-		//	return "form";
-		//}else {
+	public String agregar(Model model) {
 		model.addAttribute("marca", new Marca());
 		return "form";
-		//}
 	}
 
 	@PostMapping("/save")

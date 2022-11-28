@@ -15,7 +15,7 @@
 <body>
 <div class="container mt-4">
 	<div class="col-sm-6">
-			<form th:action="@{/saveAuto}" th:object=${auto} method="POST">
+			<form th:action="@{/saveAuto}" th:object=${auto} method="POST" class="was-validated">
 				<div class="card">
 					<div class="card-header">
 					<h3>Modulo Auto</h3>
@@ -26,28 +26,34 @@
 						</div>
 						<div class="form-group">
 							<label>AÑO</label>
-							<input th:field="*{ano}" type="text" class="form-control"/>
+							<input th:field="*{ano}" type="number" class="form-control" required/>
+							<div class="invalid-feedback">Por favor ingrese el año de modelo.</div>
 						</div>
 						<div class="form-group">
 							<label>GAMA</label>
-							<select name="gama" id="gama" class="form-select" th:field="*{gama}" aria-label="Default select example">
+							<select name="gama" id="gama" class="form-select" th:field="*{gama}" aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un gama</option>
 							  <option value="Baja">Baja</option>
 							  <option value="Intermedia">Intermedia</option>
 							  <option value="Alta">Alta</option>
 							</select>
+							<div class="invalid-feedback">Por favor seleccione una gama.</div>
 						</div>
 						<div class="form-group">
 							<label>TIPO COMBUSTIBLE</label>
-							<select name="tipoCombustible" id="tipoCombustible" class="form-select" th:field="*{tipoCombustible}" aria-label="Default select example">
+							<select name="tipoCombustible" id="tipoCombustible" class="form-select" th:field="*{tipoCombustible}" aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un tipo de combustible.</option>
 							  <option value="Gasoil">Gasoil</option>
 							  <option value="Gas">Gas</option>
 							  <option value="Nafta">Nafta</option>
 							  <option value="NaftaGas">Nafta y Gas</option>
 							</select>
+							<div class="invalid-feedback">Por favor selesccione un tipo de combustible.</div>
 						</div>
 						<div class="form-group">
 							<label>COLOR</label>
-							<select name="color" id="color" class="form-select" th:field="*{color}" aria-label="Default select example">
+							<select name="color" id="color" class="form-select" th:field="*{color}" aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un color</option>
 							  <option value="Blanco">Blanco</option>
 							  <option value="Gris">Gris</option>
 							  <option value="Negro">Negro</option>
@@ -55,60 +61,70 @@
 							  <option value="Azul">Azul</option>
 							  <option value="Rojo">Rojo</option>
 							</select>
+							<div class="invalid-feedback">Por favor selesccione un color.</div>
 						</div>
 						<div class="form-group">
 							<label>ESTADO</label>
-							<select name="estado" id="estado" class="form-select" th:field="*{estado}" aria-label="Default select example">
+							<select name="estado" id="estado" class="form-select" th:field="*{estado}" aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un estado</option>
 							  <option value="Nuevo">Nuevo</option>
 							  <option value="Usado-Nuevo">Usado como Nuevo</option>
 							  <option value="UsadoBE">Usado en Buen estado</option>
 							  <option value="Usado">Usado</option>
 							  <option value="UsadoME">Usado en Mal Estado</option>
 							</select>
+							<div class="invalid-feedback">Por favor selesccione el estado del auto.</div>
 						</div>
 						<div class="form-group">
 							<label>CANT PUERTAS</label>
-							<input th:field="*{cantPuertas}" type="text" class="form-control"/>
+							<input th:field="*{cantPuertas}" type="number" class="form-control" required/>
+							<div class="invalid-feedback">Por favor ingrese la cantidad de puertas.</div>
 						</div>
 						<div class="form-group">
 							<label>PRECIO COMPRA</label>
-							<input th:field="*{precioCosto}" type="text" class="form-control"/>
+							<input th:field="*{precioCosto}" type="number" class="form-control" required/>
+							<div class="invalid-feedback">Por favor ingrese el precio de compra.</div>
 						</div>
 						<div class="form-group">
 							<label>PRECIO VENTA</label>
-							<input th:field="*{precioVenta}" type="text" class="form-control"/>
+							<input th:field="*{precioVenta}" type="number" class="form-control" required/>
+							<div class="invalid-feedback">Por favor ingrese el precio de venta.</div>
 						</div>
 						<div class="form-group">
 							<label>MODELO</label><a th:href="@{/newModelo}"><i class="fas fa-plus" style="color:black; margin-left: 27rem;"></i></a>
-							<select th:field="*{modelo}"  class="form-select"  aria-label="Default select example">
+							<select th:field="*{modelo}"  class="form-select"  aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un modelo</option>
 							  <option th:each="modelos:${listModelo}"
 							  		th:value="${modelos.id}"
 							  		th:text="${modelos.nombre}"
 							  />
 							  
 							</select>
+							<div class="invalid-feedback">Por favor seleccione un modelo.</div>
 						</div>
 						<div class="form-group">
 							<label>IMPORTADO</label><a th:href="@{/newImp}"><i class="fas fa-plus" style="color:black; margin-left: 25rem;"></i></a>
-							<select th:field="*{importacion}"  class="form-select"  aria-label="Default select example">
+							<select th:field="*{importacion}"  class="form-select"  aria-label="Default select example" required>
+							  <option value="" hidden>Seleccione un tipo de importación.</option>
 							  <option th:each="imp:${listImp}"
 							  		th:value="${imp.id}"
 							  		th:text="${imp.nombre}"
 							  />
 							  
 							</select>
+							<div class="invalid-feedback">Por favor seleccione un tipo de importación.</div>
 						</div>
 					</div>
 					
 					<div class="card-footer">
-					<!-- <input type="submit" value="Guardar" class="btn btn-success">-->
-					<button type="button" class="btn btn-success mt-4 " data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-save"></i> Guardar</button>
+					<input type="submit" value="Guardar" class="btn btn-success mt-4">
+					<!--<button type="button" class="btn btn-success mt-4 " data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-save"></i> Guardar</button>-->
 					<a th:href="@{/listarAuto}" class="btn btn-danger mt-4"><i class="fas fa-times"></i> Cancelar</a>
 					</div>
 				</div>
 				
 				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content" style="background-color: #23cb23;color: white;">
 				      <div class="modal-body" >
@@ -119,7 +135,7 @@
 				      </div>
 				    </div>
 				  </div>
-				</div>
+				</div>-->
 			</form>
 		</div>
 	</div>  
