@@ -32,6 +32,7 @@
 			<thead>
 			<tr>
 			<th style="background-color: #37bd004f;">ID</th>
+			<th style="background-color: #37bd004f;">FECHA INGRESO</th>
 			<th style="background-color: #37bd004f;">AÑO</th>
 			<th style="background-color: #37bd004f;">GAMA</th>
 			<th style="background-color: #37bd004f;">TIPO COMBUSTIBLE</th>
@@ -49,6 +50,7 @@
 			<tbody id="myTable">
 				<tr th:each="auto:${auto}">
 					<td th:text="${auto.id}"></td>
+					<td th:text="${#dates.format(auto.fechaIngreso, 'dd-MM-yyyy')}"></td>
 					<td th:text="${auto.ano}"></td>
 					<td th:text="${auto.gama}"></td>
 					<td th:text="${auto.tipoCombustible}"></td>

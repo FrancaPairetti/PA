@@ -1,5 +1,8 @@
 package com.example.demo.modelo;
 
+
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,15 +13,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+
 
 @Entity
 @Table(name = "Auto")
 public class Auto {
+	
 	//Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int id;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column
+	private Date fechaIngreso;
 	@Column
 	private int ano;
 	@Column
@@ -123,6 +138,14 @@ public class Auto {
 	public void setVenta(List<Venta> venta) {
 		this.venta = venta;
 	}
+	public Date getFechaIngreso() {
+		return fechaIngreso;
+	}
+	public void setFechaIngreso(Date fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+	
+	
 	
 	
 	

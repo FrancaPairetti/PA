@@ -1,5 +1,7 @@
 package com.example.demo.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "Venta")
@@ -15,6 +22,10 @@ public class Venta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int id;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column
+	private Date fechaVenta;
 	@Column
 	private int cantidad;
 	@ManyToOne
@@ -102,6 +113,28 @@ public class Venta {
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
+
+
+	public Date getFechaVenta() {
+		return fechaVenta;
+	}
+
+
+	public void setFechaVenta(Date fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
+
+	public Importacion getImportacion() {
+		return importacion;
+	}
+
+
+	public void setImportacion(Importacion importacion) {
+		this.importacion = importacion;
+	}
+	
+	
 	
 	
 	

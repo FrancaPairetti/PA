@@ -26,13 +26,18 @@
 			</div>
 			<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
 		</div>
-
-	
-		
+		<div class="form-group">
+			<label>Rango de Fechas: </label>
+			<div class="input-group my-3" style="width: 30%;">
+				<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 			<tr>
 			<th style="background-color: #37bd004f;">ID</th>
+			<th style="background-color: #37bd004f;">FECHA DE VENTA</th>
 			<th style="background-color: #37bd004f;">CANTIDAD</th>
 			<th style="background-color: #37bd004f;">AUTO</th>
 			<th style="background-color: #37bd004f;">$ FINAL</th>
@@ -41,14 +46,15 @@
 			<th style="background-color: #37bd004f;">ACCIONES</th>
 			</tr>
 			</thead>
-			<tbody id="myTable">
+			<tbody id="myTable" >
 				<tr th:each="venta:${venta}">
 					<td th:text="${venta.id}"></td>
+					<td th:text="${#dates.format(venta.fechaVenta, 'dd-MM-yyyy')}" id="fechaVenta"></td>
 					<td th:text="${venta.cantidad}"></td>
 					<td th:text="${venta.auto.modelo.nombre}"> </td>
 					<td th:text="${venta.precioFinal}"></td>
 					<td th:text="${venta.cliente.nombre}"></td>
-					<td th:text="${venta.empleado.nombre}"></td>
+					<td th:text="${venta.empleado.nombre}" id="empleadoNombre"></td>
 					<td>
 						<!--  <a th:href="@{/editarVenta/}+${venta.id}" class="btn btn-primary btn-sm"><i class='fas fa-pencil-alt'></i></a>-->
 						<a  th:href="@{/eliminarVenta/}+${venta.id}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -57,15 +63,21 @@
 			</tbody>
 		</table>
 	</div>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+	<script>
+	$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#myTable tr").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+	});
+	
+	function cambioFecha(){
+		console.log("cambio fecha");
+		//habria que hacaer l función para que busque por es fecha 
+	}
+
+	</script>
 </body>
 </html>
