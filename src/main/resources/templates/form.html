@@ -12,6 +12,11 @@
 
 <title>MARCA</title>
 </head>
+<!-- Mensaje registro previamente cargado -->
+<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${error != null}"
+     th:text="${error}"
+     class="alert">
+	</div>
 <body>
 	<div class="container mt-4">
 	<div class="col-sm-6">
@@ -73,6 +78,8 @@
 			</form>
 		</div>
 	</div> 
+	
+	
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

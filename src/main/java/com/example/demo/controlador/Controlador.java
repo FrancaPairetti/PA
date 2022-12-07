@@ -1,6 +1,7 @@
 package com.example.demo.controlador;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.interfaceService.IMarcaService;
 import com.example.demo.modelo.Auto;
@@ -43,9 +45,16 @@ public class Controlador {
 	}
 
 	@PostMapping("/save")
-	public String save(@Validated Marca m, Model model) {
-		service.save(m);
-		return "redirect:/listar";
+	public String save(@Validated Marca m, Model model, RedirectAttributes attribute) {
+		Optional<Marca> marca = service.getMarcaByNombre(m.getNombre());
+		if(marca.isEmpty()) {
+			service.save(m);
+			return "redirect:/listar";
+		}else {
+			attribute.addFlashAttribute("error","Marca ya cargada previamente");
+			return "redirect:/new";
+		}
+		
 	}
 
 	@GetMapping("/editar/{id}")
@@ -61,6 +70,7 @@ public class Controlador {
 		return "redirect:/listar";
 	}
 
+	
 	@GetMapping("/menu")
 	public String menu() {
 		return "index";
@@ -120,11 +130,23 @@ public class Controlador {
 	}
 
 	@PostMapping("/saveImp")
-	public String saveImp(@Validated Importacion imp, Model model) {
-		service.saveImp(imp);
-		return "redirect:/listarImp";
-	}
+	//public String saveImp(@Validated Importacion imp, Model model) {
+	//	service.saveImp(imp);
+	//	return "redirect:/listarImp";
+	//}
 
+	public String saveImp(@Validated Importacion imp, Model model,  RedirectAttributes attribute) {
+		Optional<Importacion> importacion = service.getImportacionByNombre(imp.getNombre());
+		if(importacion.isEmpty()) {
+			service.saveImp(imp);
+			return "redirect:/listarImp";
+		}else {
+			attribute.addFlashAttribute("error","Importación ya cargado previamente");
+			return "redirect:/newImp";
+		}
+		
+	}
+	
 	@GetMapping("/editarImp/{id}")
 	public String editarImp(@PathVariable int id, Model model) {
 		java.util.Optional<Importacion> importacion = service.listarImpId(id);
@@ -154,11 +176,23 @@ public class Controlador {
 	}
 
 	@PostMapping("/saveCliente")
-	public String saveCliente(@Validated Cliente cliente, Model model, BindingResult resultadoValidacion) {
-		service.saveCliente(cliente);
-		return "redirect:/listarCliente";
+	//public String saveCliente(@Validated Cliente cliente, Model model, BindingResult resultadoValidacion) {
+	//	service.saveCliente(cliente);
+	//	return "redirect:/listarCliente";
 
+	//}
+	public String saveCliente(@Validated Cliente cliente, Model model, BindingResult resultadoValidacion,  RedirectAttributes attribute) {
+		Optional<Cliente> cliente1 = service.getClienteByCuil(cliente.getCuil());
+		if(cliente1.isEmpty()) {
+			service.saveCliente(cliente);
+			return "redirect:/listarCliente";
+		}else {
+			attribute.addFlashAttribute("error","Cliente ya cargado previamente");
+			return "redirect:/newCliente";
+		}
+		
 	}
+	
 
 	@GetMapping("/editarCliente/{id}")
 	public String editarCliente(@PathVariable int id, Model model) {
@@ -189,11 +223,23 @@ public class Controlador {
 	}
 
 	@PostMapping("/saveEmpleado")
-	public String saveEmpleado(@Validated Empleado empleado, Model model) {
-		service.saveEmpleado(empleado);
-		return "redirect:/listarEmpleado";
+	//public String saveEmpleado(@Validated Empleado empleado, Model model) {
+	//	service.saveEmpleado(empleado);
+	//	return "redirect:/listarEmpleado";
+	//}
+	
+	public String saveEmpleado(@Validated Empleado empleado, Model model, RedirectAttributes attribute) {
+		Optional<Empleado> empleado1 = service.getEmpleadoByCuit(empleado.getCuit());
+		if(empleado1.isEmpty()) {
+			service.saveEmpleado(empleado);
+			return "redirect:/listarEmpleado";
+		}else {
+			attribute.addFlashAttribute("error","Empleado ya cargado previamente");
+			return "redirect:/newEmpleado";
+		}
+		
 	}
-
+	
 	@GetMapping("/editarEmpleado/{id}")
 	public String editarEmpleado(@PathVariable int id, Model model) {
 		java.util.Optional<Empleado> empleado = service.listarEmpleadoId(id);
@@ -252,7 +298,13 @@ public class Controlador {
 	@GetMapping("/listarVenta")
 	public String listarVenta(Model model) {
 		List<Venta> venta = service.listarVenta();
+		List<Marca> listMarcas = service.listar();
+		List<Empleado> listEmpleado = service.listarEmpleado();
+		List<Cliente> listCliente = service.listarCliente();
 		model.addAttribute("venta", venta);
+		model.addAttribute("listMarcas", listMarcas);
+		model.addAttribute("listEmpleado", listEmpleado);
+		model.addAttribute("listCliente", listCliente);
 		return "listarVenta";
 	}
 
@@ -261,10 +313,12 @@ public class Controlador {
 		List<Cliente> listCliente = service.listarCliente();
 		List<Empleado> listEmpleado = service.listarEmpleado();
 		List<Auto> listAuto = service.listarAuto();
+		List<Marca> listMarcas = service.listar();
 		model.addAttribute("venta", new Venta());
 		model.addAttribute("listCliente", listCliente);
 		model.addAttribute("listEmpleado", listEmpleado);
 		model.addAttribute("listAuto", listAuto);
+		model.addAttribute("listMarcas", listMarcas);
 		return "crearVenta";
 	}
 

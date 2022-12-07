@@ -17,6 +17,7 @@ public interface IMarcaService {
 	//Marca
 	public List<Marca>listar();
 	public Optional<Marca>listarId(int id);
+	public Optional<Marca>getMarcaByNombre(String nombre);
 	public int save(Marca m);
 	public void delete(int id);
 	
@@ -29,6 +30,7 @@ public interface IMarcaService {
 	//Importacion
 	public List<Importacion>listarImp();
 	public Optional<Importacion>listarImpId(int id);
+	public Optional<Importacion>getImportacionByNombre(String nombre);
 	public int saveImp(Importacion imp);
 	public void deleteImp(int id);
 	
@@ -36,12 +38,14 @@ public interface IMarcaService {
 	//Cliente
 	public List<Cliente>listarCliente();
 	public Optional<Cliente>listarClienteId(int id);
+	public Optional<Cliente>getClienteByCuil(String cuil);
 	public int saveCliente(Cliente cliente);
 	public void deleteCliente(int id);
 	
 	//Empleado
 	public List<Empleado>listarEmpleado();
 	public Optional<Empleado>listarEmpleadoId(int id);
+	public Optional<Empleado>getEmpleadoByCuit(String cuit);
 	public int saveEmpleado(Empleado empleado);
 	public void deleteEmpleado(int id);
 	

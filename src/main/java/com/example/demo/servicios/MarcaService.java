@@ -27,6 +27,12 @@ public class MarcaService implements IMarcaService {
 	
 	@Autowired
 	private IMarca data;
+	
+	@Override
+	public Optional<Marca> getMarcaByNombre(String nombre) {
+		return data.findByNombre(nombre);
+	}
+	
 	@Override
 	public List<Marca> listar() {
 		return (List<Marca>)data.findAll();
@@ -89,6 +95,11 @@ public class MarcaService implements IMarcaService {
 	private IImportacion data11;
 	
 	@Override
+	public Optional<Importacion> getImportacionByNombre(String nombre) {
+		return data11.findByNombre(nombre);
+	}
+	
+	@Override
 	public List<Importacion> listarImp() {
 		return (List<Importacion>)data11.findAll();
 	}
@@ -117,6 +128,12 @@ public class MarcaService implements IMarcaService {
 	//CLIENTE
 	@Autowired
 	private ICliente data111;
+	
+	@Override
+	public Optional<Cliente> getClienteByCuil(String cuil) {
+		return data111.findByCuil(cuil);
+	}
+	
 	@Override
 	public List<Cliente> listarCliente() {
 		return (List<Cliente>)data111.findAll();
@@ -128,6 +145,7 @@ public class MarcaService implements IMarcaService {
 		return data111.findById(id);
 	}
 
+	
 	@Override
 	public int saveCliente(Cliente c) {
 		int res=0;
@@ -179,6 +197,12 @@ public class MarcaService implements IMarcaService {
 	//EMPLEADO
 	@Autowired
 	private IEmpleado data11111;
+	
+	@Override
+	public Optional<Empleado> getEmpleadoByCuit(String cuit) {
+		return data11111.findByCuit(cuit);
+	}
+	
 	@Override
 	public List<Empleado> listarEmpleado() {
 		return (List<Empleado>)data11111.findAll();
@@ -235,4 +259,6 @@ public class MarcaService implements IMarcaService {
 			data111111.deleteById(id);
 			
 		}
+
+
 }
