@@ -43,6 +43,14 @@
 			</div>
 			<input class="form-control" id="myInput2" type="text" placeholder="Buscar..">
 		</div>
+		
+		<div class="form-group">
+			<label>Rango de Fechas: </label>
+			<div class="input-group my-3" style="width: 30%;">
+				<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+			</div>
+		</div>
 	
 		<table class="table">
 			<thead>
@@ -66,7 +74,7 @@
 			<tbody id="myTable">
 				<tr th:each="auto:${auto}">
 					<td th:text="${auto.id}"></td>
-					<td th:text="${#dates.format(auto.fechaIngreso, 'dd-MM-yyyy')}"></td>
+					<td th:text="${auto.fechaIngreso}"></td>
 					<td th:text="${auto.ano}"></td>
 					<td th:text="${auto.gama}"></td>
 					<td th:text="${auto.tipoCombustible}"></td>
@@ -122,6 +130,23 @@ function getCliente(selectObject) {
 	  });
 	
 	});
+	
+	function cambioFecha(){
+		var fechaDesde= $("#fechaDesde").val();
+		var fechaHasta =  $("#fechaHasta").val();
+		let filterFrom= new Date(fechaDesde);
+		let filterTo= new Date(fechaHasta);
+		$('#myTable tr').each(function () {
+			var fechaFila = $(this).find("td:eq(1)").text();
+			let fechaVenta = new Date(fechaFila);
+			if ((filterFrom <= fechaVenta) && (fechaVenta <= filterTo) ){
+				$(this).show();
+			}else{
+				$(this).hide();
+			}
+		});
+	    
+	}
 	
 
 	</script>

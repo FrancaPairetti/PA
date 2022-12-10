@@ -42,18 +42,32 @@ public class Venta {
 	private Auto auto;
 	
 	//CONSTRUCTOR
-	public Venta(int id, int cantidad, int impuestos, Auto auto, Importacion importacion, int precioFinal) {
-		super();
-		this.id = id;
-		this.cantidad = cantidad;
-		this.auto = auto;
-		this.importacion = importacion;
-		this.precioFinal = precioFinal;
-	}
-	
 	
 	public Venta() {
 		super();
+	}
+
+
+	public Venta(int id, Date fechaVenta, int cantidad, Importacion importacion, int valorimp, int precioFinal,
+			Cliente cliente, Empleado empleado, Auto auto) {
+		super();
+		this.id = id;
+		this.fechaVenta = fechaVenta;
+		this.cantidad = cantidad;
+		this.importacion = importacion;
+		this.valorimp = valorimp;
+		this.precioFinal = precioFinal;
+		this.cliente = cliente;
+		this.empleado = empleado;
+		this.auto = auto;
+	}
+	
+
+
+	public Venta(Date fechaVenta, int cantidad) {
+		super();
+		this.fechaVenta = fechaVenta;
+		this.cantidad = cantidad;
 	}
 
 
@@ -132,6 +146,13 @@ public class Venta {
 
 	public void setImportacion(Importacion importacion) {
 		this.importacion = importacion;
+	}
+	
+	//CALCULAR PRECIO DE VENTA FINAL 
+	
+	public double calcularPrecioVenta(int cantidad, double precioAuto , double impuesto) {
+		double precioVenta= (cantidad*precioAuto)+(((precioAuto/100)*impuesto)*cantidad);
+		return precioVenta;
 	}
 	
 	

@@ -80,7 +80,7 @@
 			<tbody id="myTable" >
 				<tr th:each="venta:${venta}">
 					<td name="id" th:text="${venta.id}"></td>
-					<td name="fecha" th:text="${#dates.format(venta.fechaVenta, 'dd-MM-yyyy')}" id="fechaVenta"></td>
+					<td name="fecha" th:text="${venta.fechaVenta}"></td>
 					<td name="cantidad" th:text="${venta.cantidad}"></td>
 					<td name="auto" th:text="${venta.auto.modelo.nombre}"> </td>
 					<td name="precio" th:text="${venta.precioFinal}"></td>
@@ -143,9 +143,22 @@
 	
 	
 	function cambioFecha(){
-		console.log("cambio fecha");
-		//habria que hacaer l función para que busque por es fecha 
+		var fechaDesde= $("#fechaDesde").val();
+		var fechaHasta =  $("#fechaHasta").val();
+		let filterFrom= new Date(fechaDesde);
+		let filterTo= new Date(fechaHasta);
+		$('#myTable tr').each(function () {
+			var fechaFila = $(this).find("td:eq(1)").text();
+			let fechaVenta = new Date(fechaFila);
+			if ((filterFrom <= fechaVenta) && (fechaVenta <= filterTo) ){
+				$(this).show();
+			}else{
+				$(this).hide();
+			}
+		});
+	    
 	}
+	
 
 	</script>
 </body>

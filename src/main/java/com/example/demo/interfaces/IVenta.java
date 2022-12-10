@@ -6,4 +6,6 @@ import com.example.demo.modelo.Venta;
 
 public interface IVenta extends CrudRepository<Venta, Integer> {
 
+	public Venta findByPrecioFinal(int Precio);
+
 }

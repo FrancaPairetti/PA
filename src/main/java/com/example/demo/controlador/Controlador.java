@@ -1,5 +1,6 @@
 package com.example.demo.controlador;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -346,11 +347,25 @@ public class Controlador {
 		service.deleteVenta(id);
 		return "redirect:/listarVenta";
 	}
+	
+	//REPORTES
 
-	@GetMapping("/ejemplo")
-	public String ejemplo() {
-
-		return "ejmplofiltro";
+	@GetMapping("/reportes")
+	public String reportes(Model model) {
+		List<Empleado> listEmpleado = service.listarEmpleado();
+		List<Modelo> listModelo = service.listarModelo();
+		List<Marca> listMarcas = service.listar();
+		model.addAttribute("listEmpleado", listEmpleado);
+		model.addAttribute("listModelo", listModelo);
+		model.addAttribute("listMarcas", listMarcas);
+		return "reportes";
 	}
 
+	@GetMapping("/reporteVendedorMarca")
+	public String reporteVendedor(Model model) {
+		List<Venta> venta = service.listarVenta();
+		model.addAttribute("venta", venta);
+		return "repVendedorMarca";
+	}
+	
 }
