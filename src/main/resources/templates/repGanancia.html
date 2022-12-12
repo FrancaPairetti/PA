@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+<title>GANANCIAS OBTENIDAS DE LA VENTAS POR MARCA Y/O MODELO</title>
+
+</head>
+<body>
+<div class="container mt-4">
+	<div class="form-group my-2">
+		<label>Rango de Fechas: </label>
+		<div class="input-group">
+			<input class="form-control" id="fechaDesde" type="text" placeholder="Fecha Desde..." value="">
+			<input class="form-control" id="fechaHasta" type="text" placeholder="Fecha Hasta..." value="">
+		</div>
+	</div>
+	
+	<div class="form-group my-2">
+		<label>Marca: </label>
+		<div class="input-group">
+			<input class="form-control" id="marca" type="text" value="">
+			<input class="form-control" id="marcaNombre" type="text" value="">
+		</div>
+	</div>
+	
+	<div class="form-group my-2">
+		<label>Modelo: </label>
+		<div class="input-group">
+			<input class="form-control" id="modelo" type="text" value="">
+			<input class="form-control" id="modeloNombre" type="text" value="">
+		</div>
+	</div>
+	
+	<!-- ------------------------ TABLA DONDE SE CARGA LA INFO DE UN REPORTE ---------------------------------------------- -->
+	<table class="table">
+			<thead>
+			<tr>
+			<th style="background-color: #37bd004f;">MES</th>
+			<th style="background-color: #37bd004f;text-align: center;">GANANCIA</th>
+			<th style="background-color: #37bd004f;text-align: center;">MODELO</th>
+			<th style="background-color: #37bd004f;text-align: center;">MARCA</th>
+			</tr>
+			</thead>
+			<tbody id="tableReporte">
+				<tr  style="display:none;">
+					<td>ENERO</td>
+					<td><input id="gananciaEnero" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable0" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable0" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>FEBRERO</td>
+					<td><input id="gananciaFebrero" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable1" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable1" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>MARZO</td>
+					<td><input id="gananciaMarzo" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable2" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable2" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>ABRIL</td>
+					<td><input id="gananciaAbril" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable3" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable3" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>MAYO</td>
+					<td><input id="gananciaMayo" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable4" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable4" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>JUNIO</td>
+					<td><input id="gananciaJunio" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable5" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable5" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>JULIO</td>
+					<td><input id="gananciaJulio" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable6" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable6" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>AGOSTO</td>
+					<td><input id="gananciaAgosto" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable7" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable7" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>SEPTIEMBRE</td>
+					<td><input id="gananciaSeptiembre" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable8" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable8" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>OCTUBRE</td>
+					<td><input id="gananciaOctubre" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable9" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable9" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>NOVIEMBRE</td>
+					<td><input id="gananciaNoviembre" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable10" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable10" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+				<tr style="display:none;">
+					<td>DICIEMBRE</td>
+					<td><input id="gananciaDiciembre" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="modeloTable11" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+					<td><input id="marcaTable11" type="text" class="form-control" disabled style="background-color: white;border: 1px solid #ffffff00; text-align: center;"></td>
+				</tr>
+			</tbody>
+		</table>
+
+	<!--------TABLA OCULTA PARA OBTENER LA INFO-------------------------------------------------------------------------------->
+	<table class="table" style="visibility:collapse; display:none;">
+			<tbody id="myTable" >
+				<tr th:each="venta:${venta}">
+					<td name="fecha" th:text="${venta.fechaVenta}"></td>
+					<td name="cantidad" th:text="${venta.cantidad}"></td>
+					<td name="precioVenta" th:text="${venta.auto.precioVenta}"></td>
+					<td name="precioCosto" th:text="${venta.auto.precioCosto}"></td>
+					<td name="auto" th:text="${venta.auto.modelo.id}"> </td>
+					<td name="auto" th:text="${venta.auto.modelo.marca.id}"> </td>
+				</tr>
+			</tbody>
+		</table>
+	
+</div>
+
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+
+
+
+<script>
+
+	//si tiene filtro de fechas y MODELO
+	 function repFechaModelo(){
+	 	//DEFINO VARIABLES PARA CANTIDAD POR MES
+	 	var gananciaEne=0;
+	 	var gananciaFeb=0;
+	 	var gananciaMar=0;
+	 	var gananciaAbr=0;
+	 	var gananciaMay=0;
+	 	var gananciaJun=0;
+	 	var gananciaJul=0;
+	 	var gananciaAgo=0;
+	 	var gananciaSep=0;
+	 	var gananciaOct=0;
+	 	var gananciaNov=0;
+	 	var gananciaDic=0;
+	 	
+	 	//OBTENEMOS LA INFO INGRESADA EN LOS FILTROS
+	 	var fechaDesde= $("#fechaDesde").val();
+		var fechaHasta =  $("#fechaHasta").val();
+		let filterFrom= new Date(fechaDesde);
+		let filterTo= new Date(fechaHasta);
+		var modeloID=$("#modelo").val();
+		//RECORREMOS LA TABLA PARA FILTAR LA INFO QUE NECESITAMOS
+		$('#myTable tr').each(function () {
+		
+			//OBTENEMOS LA FECHA DE VENTA DE CADA FILA
+			var fechaFila = $(this).find("td:eq(0)").text();
+			let fechaVenta = new Date(fechaFila);
+			
+			//OBTENEMOS LA CANTIDAD DE CADA FILA
+			var cantidad=parseInt($(this).find("td:eq(1)").text());
+			
+			//OBTENEMS EL PRECIO DE VENTA Y DE COSTO DE CADA FILA
+			var precioVenta=parseInt($(this).find("td:eq(2)").text());
+			var precioCosto=parseInt($(this).find("td:eq(3)").text());
+			
+			//OBTENEMOS EL MODELO DE CADA FILA
+			var modelo = $(this).find("td:eq(4)").text();
+			
+			//FILTAR Y CALCULAR LA CANTIDAD
+			if (((filterFrom <= fechaVenta) && (fechaVenta <= filterTo)) && (modeloID==modelo)){
+				if(fechaVenta.getMonth()==0){
+					console.log("enero");
+					$('#tableReporte tr:eq(0)').show();
+					gananciaEne= gananciaEne + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==1){
+					console.log("febrero");
+					$('#tableReporte tr:eq(1)').show();
+					gananciaFeb= gananciaFeb + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==2){
+					console.log("marzo");
+					$('#tableReporte tr:eq(2)').show();
+					gananciaMar= gananciaMar + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==3){
+					console.log("abril");
+					$('#tableReporte tr:eq(3)').show();
+					gananciaAbr= gananciaAbr + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==4){
+					console.log("mayo");
+					$('#tableReporte tr:eq(4)').show();
+					gananciaMay= gananciaMay + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==5){
+					console.log("junio");
+					$('#tableReporte tr:eq(5)').show();
+					gananciaJun= gananciaJun + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==6){
+					console.log("julio");
+					$('#tableReporte tr:eq(6)').show();
+					gananciaJul= gananciaJul + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==7){
+					console.log("agosto");
+					$('#tableReporte tr:eq(7)').show();
+					gananciaAgo= gananciaAgo + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==8){
+					console.log("septiembre");
+					$('#tableReporte tr:eq(8)').show();
+					gananciaSep= gananciaSep + (cantidad*(precioVenta-precioCosto));;
+				}
+				else if(fechaVenta.getMonth()==9){
+					console.log("octubre");
+					$('#tableReporte tr:eq(9)').show();
+					gananciaOct= gananciaOct + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==10){
+					console.log("noviembre");
+					$('#tableReporte tr:eq(10)').show();
+					gananciaNov= gananciaNov + (cantidad*(precioVenta-precioCosto));
+				}
+				else{
+					console.log("diciembre");
+					$('#tableReporte tr:eq(11)').show();
+					gananciaDic= gananciaDic + (cantidad*(precioVenta-precioCosto));
+				}
+			}
+		});
+		
+		//LE ASIGANMOS LAS GANANCIAS CALCULADAS A CADA MES
+		document.getElementById("gananciaEnero").value = gananciaEne;
+		document.getElementById("gananciaFebrero").value = gananciaFeb;
+		document.getElementById("gananciaMarzo").value = gananciaMar;
+		document.getElementById("gananciaAbril").value = gananciaAbr;
+		document.getElementById("gananciaMayo").value = gananciaMay;
+		document.getElementById("gananciaJunio").value = gananciaJun;
+		document.getElementById("gananciaJulio").value = gananciaJul;
+		document.getElementById("gananciaAgosto").value = gananciaAgo;
+		document.getElementById("gananciaSeptiembre").value = gananciaSep;
+		document.getElementById("gananciaOctubre").value = gananciaOct;
+		document.getElementById("gananciaNoviembre").value = gananciaNov;
+		document.getElementById("gananciaDiciembre").value = gananciaDic;
+		
+ 	}	
+ 	
+ 	//
+ 	//si tiene filtro de fechas y marca
+	 function repFechaMarca(){
+	 	//DEFINO VARIABLES PARA CANTIDAD POR MES
+	 	var gananciaEne=0;
+	 	var gananciaFeb=0;
+	 	var gananciaMar=0;
+	 	var gananciaAbr=0;
+	 	var gananciaMay=0;
+	 	var gananciaJun=0;
+	 	var gananciaJul=0;
+	 	var gananciaAgo=0;
+	 	var gananciaSep=0;
+	 	var gananciaOct=0;
+	 	var gananciaNov=0;
+	 	var gananciaDic=0;
+	 	
+	 	//OBTENEMOS LA INFO INGRESADA EN LOS FILTROS
+	 	var fechaDesde= $("#fechaDesde").val();
+		var fechaHasta =  $("#fechaHasta").val();
+		let filterFrom= new Date(fechaDesde);
+		let filterTo= new Date(fechaHasta);
+		var marcaID=$("#marca").val();
+		//RECORREMOS LA TABLA PARA FILTAR LA INFO QUE NECESITAMOS
+		$('#myTable tr').each(function () {
+		
+			//OBTENEMOS LA FECHA DE VENTA DE CADA FILA
+			var fechaFila = $(this).find("td:eq(0)").text();
+			let fechaVenta = new Date(fechaFila);
+			
+			//OBTENEMOS LA CANTIDAD DE CADA FILA
+			var cantidad=parseInt($(this).find("td:eq(1)").text());
+			
+			//OBTENEMS EL PRECIO DE VENTA Y DE COSTO DE CADA FILA
+			var precioVenta=parseInt($(this).find("td:eq(2)").text());
+			var precioCosto=parseInt($(this).find("td:eq(3)").text());
+			
+			//OBTENEMOS EL MODELO DE CADA FILA
+			var marca = $(this).find("td:eq(5)").text();
+			
+			//FILTAR Y CALCULAR LA CANTIDAD
+			if (((filterFrom <= fechaVenta) && (fechaVenta <= filterTo)) && (marcaID==marca)){
+				if(fechaVenta.getMonth()==0){
+					console.log("enero");
+					$('#tableReporte tr:eq(0)').show();
+					gananciaEne= gananciaEne + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==1){
+					console.log("febrero");
+					$('#tableReporte tr:eq(1)').show();
+					gananciaFeb= gananciaFeb + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==2){
+					console.log("marzo");
+					$('#tableReporte tr:eq(2)').show();
+					gananciaMar= gananciaMar + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==3){
+					console.log("abril");
+					$('#tableReporte tr:eq(3)').show();
+					gananciaAbr= gananciaAbr + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==4){
+					console.log("mayo");
+					$('#tableReporte tr:eq(4)').show();
+					gananciaMay= gananciaMay + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==5){
+					console.log("junio");
+					$('#tableReporte tr:eq(5)').show();
+					gananciaJun= gananciaJun + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==6){
+					console.log("julio");
+					$('#tableReporte tr:eq(6)').show();
+					gananciaJul= gananciaJul + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==7){
+					console.log("agosto");
+					$('#tableReporte tr:eq(7)').show();
+					gananciaAgo= gananciaAgo + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==8){
+					console.log("septiembre");
+					$('#tableReporte tr:eq(8)').show();
+					gananciaSep= gananciaSep + (cantidad*(precioVenta-precioCosto));;
+				}
+				else if(fechaVenta.getMonth()==9){
+					console.log("octubre");
+					$('#tableReporte tr:eq(9)').show();
+					gananciaOct= gananciaOct + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==10){
+					console.log("noviembre");
+					$('#tableReporte tr:eq(10)').show();
+					gananciaNov= gananciaNov + (cantidad*(precioVenta-precioCosto));
+				}
+				else{
+					console.log("diciembre");
+					$('#tableReporte tr:eq(11)').show();
+					gananciaDic= gananciaDic + (cantidad*(precioVenta-precioCosto));
+				}
+			}
+		});
+		
+		//LE ASIGANMOS LAS CANTIDADES CALCULADAS A CADA MES
+		document.getElementById("gananciaEnero").value = gananciaEne;
+		document.getElementById("gananciaFebrero").value = gananciaFeb;
+		document.getElementById("gananciaMarzo").value = gananciaMar;
+		document.getElementById("gananciaAbril").value = gananciaAbr;
+		document.getElementById("gananciaMayo").value = gananciaMay;
+		document.getElementById("gananciaJunio").value = gananciaJun;
+		document.getElementById("gananciaJulio").value = gananciaJul;
+		document.getElementById("gananciaAgosto").value = gananciaAgo;
+		document.getElementById("gananciaSeptiembre").value = gananciaSep;
+		document.getElementById("gananciaOctubre").value = gananciaOct;
+		document.getElementById("gananciaNoviembre").value = gananciaNov;
+		document.getElementById("gananciaDiciembre").value = gananciaDic;
+		
+ 	}	
+ 	
+ 	//si tiene filtro de fechas y MODELO y MARCA
+	 function repModeloMarca(){
+	 	//DEFINO VARIABLES PARA CANTIDAD POR MES
+	 	var gananciaEne=0;
+	 	var gananciaFeb=0;
+	 	var gananciaMar=0;
+	 	var gananciaAbr=0;
+	 	var gananciaMay=0;
+	 	var gananciaJun=0;
+	 	var gananciaJul=0;
+	 	var gananciaAgo=0;
+	 	var gananciaSep=0;
+	 	var gananciaOct=0;
+	 	var gananciaNov=0;
+	 	var gananciaDic=0;
+	 	
+	 	//OBTENEMOS LA INFO INGRESADA EN LOS FILTROS
+	 	var fechaDesde= $("#fechaDesde").val();
+		var fechaHasta =  $("#fechaHasta").val();
+		let filterFrom= new Date(fechaDesde);
+		let filterTo= new Date(fechaHasta);
+		var modeloID=$("#modelo").val();
+		var marcaID=$("#marca").val();
+		//RECORREMOS LA TABLA PARA FILTAR LA INFO QUE NECESITAMOS
+		$('#myTable tr').each(function () {
+		
+			//OBTENEMOS LA FECHA DE VENTA DE CADA FILA
+			var fechaFila = $(this).find("td:eq(0)").text();
+			let fechaVenta = new Date(fechaFila);
+			
+			//OBTENEMOS LA CANTIDAD DE CADA FILA
+			var cantidad=parseInt($(this).find("td:eq(1)").text());
+			
+			//OBTENEMS EL PRECIO DE VENTA Y DE COSTO DE CADA FILA
+			var precioVenta=parseInt($(this).find("td:eq(2)").text());
+			var precioCosto=parseInt($(this).find("td:eq(3)").text());
+			
+			//OBTENEMOS EL MODELO DE CADA FILA
+			var modelo = $(this).find("td:eq(4)").text();
+			
+			//OBTENEMOS LA MARCA DE CADA FILA
+			var marca = $(this).find("td:eq(5)").text();
+			
+			//FILTAR Y CALCULAR LA CANTIDAD
+			if (((filterFrom <= fechaVenta) && (fechaVenta <= filterTo)) && (modeloID==modelo) && (marcaID==marca)){
+				if(fechaVenta.getMonth()==0){
+					console.log("enero");
+					$('#tableReporte tr:eq(0)').show();
+					gananciaEne= gananciaEne + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==1){
+					console.log("febrero");
+					$('#tableReporte tr:eq(1)').show();
+					gananciaFeb= gananciaFeb + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==2){
+					console.log("marzo");
+					$('#tableReporte tr:eq(2)').show();
+					gananciaMar= gananciaMar + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==3){
+					console.log("abril");
+					$('#tableReporte tr:eq(3)').show();
+					gananciaAbr= gananciaAbr + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==4){
+					console.log("mayo");
+					$('#tableReporte tr:eq(4)').show();
+					gananciaMay= gananciaMay + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==5){
+					console.log("junio");
+					$('#tableReporte tr:eq(5)').show();
+					gananciaJun= gananciaJun + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==6){
+					console.log("julio");
+					$('#tableReporte tr:eq(6)').show();
+					gananciaJul= gananciaJul + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==7){
+					console.log("agosto");
+					$('#tableReporte tr:eq(7)').show();
+					gananciaAgo= gananciaAgo + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==8){
+					console.log("septiembre");
+					$('#tableReporte tr:eq(8)').show();
+					gananciaSep= gananciaSep + (cantidad*(precioVenta-precioCosto));;
+				}
+				else if(fechaVenta.getMonth()==9){
+					console.log("octubre");
+					$('#tableReporte tr:eq(9)').show();
+					gananciaOct= gananciaOct + (cantidad*(precioVenta-precioCosto));
+				}
+				else if(fechaVenta.getMonth()==10){
+					console.log("noviembre");
+					$('#tableReporte tr:eq(10)').show();
+					gananciaNov= gananciaNov + (cantidad*(precioVenta-precioCosto));
+				}
+				else{
+					console.log("diciembre");
+					$('#tableReporte tr:eq(11)').show();
+					gananciaDic= gananciaDic + (cantidad*(precioVenta-precioCosto));
+				}
+			}
+		});
+		
+		//LE ASIGANMOS LAS CANTIDADES CALCULADAS A CADA MES
+		document.getElementById("gananciaEnero").value = gananciaEne;
+		document.getElementById("gananciaFebrero").value = gananciaFeb;
+		document.getElementById("gananciaMarzo").value = gananciaMar;
+		document.getElementById("gananciaAbril").value = gananciaAbr;
+		document.getElementById("gananciaMayo").value = gananciaMay;
+		document.getElementById("gananciaJunio").value = gananciaJun;
+		document.getElementById("gananciaJulio").value = gananciaJul;
+		document.getElementById("gananciaAgosto").value = gananciaAgo;
+		document.getElementById("gananciaSeptiembre").value = gananciaSep;
+		document.getElementById("gananciaOctubre").value = gananciaOct;
+		document.getElementById("gananciaNoviembre").value = gananciaNov;
+		document.getElementById("gananciaDiciembre").value = gananciaDic;
+		
+ 	}	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 		
+	 var url_string = window.location.href; //
+	 var url = new URL(url_string);
+	 var desde = url.searchParams.get("fechaDesde");
+	 document.getElementById("fechaDesde").value = desde;
+	 
+	 var hasta = url.searchParams.get("fechaHasta");
+	 document.getElementById("fechaHasta").value = hasta;
+	 
+	 var marcaFiltro = url.searchParams.get("marca");
+	 document.getElementById("marca").value = marcaFiltro;
+	 var marcaNombre="";
+	 if (marcaFiltro==1){
+	 	marcaNombre="Toyota";
+	 }else if (marcaFiltro==2){
+	 	marcaNombre="Fiat";
+	 }else if (marcaFiltro==3){
+	 	marcaNombre="Audi";
+	 }else if (marcaFiltro==4){
+	 	marcaNombre="BMW";
+	 }else if (marcaFiltro==5){
+	 	marcaNombre="Ford";
+	 }else if (marcaFiltro==6){
+	 	marcaNombre="Jeep";
+	 }else if (marcaFiltro==7){
+	 	marcaNombre="Chevrolet";
+	 }else if (marcaFiltro==8){
+	 	marcaNombre="Citroën";
+	 }else if (marcaFiltro==9){
+	 	marcaNombre="Peugeot";
+	 }else if (marcaFiltro==10){
+	 	marcaNombre="Renault";
+	 }
+	 
+	 document.getElementById("marcaNombre").value = marcaNombre;
+	 document.getElementById("marcaTable0").value = marcaNombre;
+	 document.getElementById("marcaTable1").value =marcaNombre ;
+	 document.getElementById("marcaTable2").value =marcaNombre ;
+	 document.getElementById("marcaTable3").value = marcaNombre;
+	 document.getElementById("marcaTable4").value =marcaNombre ;
+	 document.getElementById("marcaTable5").value =marcaNombre;
+	 document.getElementById("marcaTable6").value = marcaNombre;
+	 document.getElementById("marcaTable7").value = marcaNombre;
+	 document.getElementById("marcaTable8").value =marcaNombre ;
+	 document.getElementById("marcaTable9").value = marcaNombre;
+	 document.getElementById("marcaTable10").value = marcaNombre;
+	 document.getElementById("marcaTable11").value = marcaNombre;
+	 
+	 
+	 var modeloFiltro = url.searchParams.get("modelo");
+	 var nombreModelo="";
+	 	if (modeloFiltro==1){nombreModelo="Corola";}
+		else if(modeloFiltro==2){nombreModelo="Etios Hatchback";}
+		else if(modeloFiltro==3){nombreModelo="Hilux Conquest";}
+		else if(modeloFiltro==4){nombreModelo="GR YARIS";}
+		else if(modeloFiltro==5){nombreModelo="Camry";}
+		else if(modeloFiltro==6){nombreModelo="Cronos";}
+		else if(modeloFiltro==7){nombreModelo="Argo";}
+		else if(modeloFiltro==8){nombreModelo="Uno";}
+		else if(modeloFiltro==9){nombreModelo="Mobi";}
+		else if(modeloFiltro==10){nombreModelo="Pulse";}
+		else if(modeloFiltro==11){nombreModelo="A3";}
+		else if(modeloFiltro==12){nombreModelo="A4";}
+		else if(modeloFiltro==13){nombreModelo="X5";}
+		else if(modeloFiltro==14){nombreModelo="Serie 1";}
+		else if(modeloFiltro==15){nombreModelo="EcoSport";}
+		else if(modeloFiltro==16){nombreModelo="Fiesta";}
+		else if(modeloFiltro==17){nombreModelo="Ranger";}
+		else if(modeloFiltro==18){nombreModelo="Renegade";}
+		else if(modeloFiltro==19){nombreModelo="Onix";}
+		else if(modeloFiltro==20){nombreModelo="Joy";}
+		else if(modeloFiltro==21){nombreModelo="C3";}
+		else if(modeloFiltro==22){nombreModelo="C4";}
+		else if(modeloFiltro==23){nombreModelo="208";}
+		else if(modeloFiltro==24){nombreModelo="308";}
+		else if(modeloFiltro==25){nombreModelo="Duster";}
+		else if(modeloFiltro==26){nombreModelo="Captur";}
+		else if(modeloFiltro==27){nombreModelo="Sandero";}
+	 document.getElementById("modelo").value = modeloFiltro;
+	 document.getElementById("modeloNombre").value = nombreModelo;
+	 document.getElementById("modeloTable0").value = nombreModelo;
+	 document.getElementById("modeloTable1").value = nombreModelo;
+	 document.getElementById("modeloTable2").value = nombreModelo;
+	 document.getElementById("modeloTable3").value = nombreModelo;
+	 document.getElementById("modeloTable4").value = nombreModelo;
+	 document.getElementById("modeloTable5").value = nombreModelo;
+	 document.getElementById("modeloTable6").value = nombreModelo;
+	 document.getElementById("modeloTable7").value = nombreModelo;
+	 document.getElementById("modeloTable8").value = nombreModelo;
+	 document.getElementById("modeloTable9").value = nombreModelo;
+	 document.getElementById("modeloTable10").value = nombreModelo;
+	 document.getElementById("modeloTable11").value = nombreModelo;
+	 
+	 if (modeloFiltro != '' &&  marcaFiltro!= ''){
+	 	repModeloMarca();
+	 	console.log("entro if")
+	 }else if(modeloFiltro != ''){
+	 	repFechaModelo();
+	 }else if( marcaFiltro!= ''){
+	 	repFechaMarca();	
+	 }
+	 
+ </script>
+
+</body>
+</html>

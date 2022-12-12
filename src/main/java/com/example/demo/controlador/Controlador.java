@@ -368,4 +368,18 @@ public class Controlador {
 		return "repVendedorMarca";
 	}
 	
+	@GetMapping("/reporteGanancia")
+	public String reporteGanancia(Model model) {
+		List<Venta> venta = service.listarVenta();
+		model.addAttribute("venta", venta);
+		return "repGanancia";
+	}
+	
+	@GetMapping("/reporteTotal")
+	public String reporteTotal(Model model) {
+		List<Venta> venta = service.listarVenta();
+		model.addAttribute("venta", venta);
+		return "repTotal";
+	}
+	
 }

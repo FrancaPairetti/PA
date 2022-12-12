@@ -15,6 +15,14 @@
 	 function abrir_popup(url,ubicacion){
 	     window.open(url+'?fechaDesde='+document.getElementById('fechaDesde').value+'&fechaHasta='+document.getElementById('fechaHasta').value+'&marca='+document.getElementById('marca').value+'&empleado='+document.getElementById('empleado').value, ubicacion); return false;
 	 }
+	 
+	 function abrir_popup1(url,ubicacion){
+	     window.open(url+'?fechaDesde='+document.getElementById('fechaDesde1').value+'&fechaHasta='+document.getElementById('fechaHasta1').value+'&marca='+document.getElementById('marca1').value+'&modelo='+document.getElementById('modelo1').value, ubicacion); return false;
+	 }
+	 
+	 function abrir_popup2(url,ubicacion){
+	     window.open(url+'?fechaDesde='+document.getElementById('fechaDesde2').value+'&fechaHasta='+document.getElementById('fechaHasta2').value+'&marca='+document.getElementById('marca2').value+'&modelo='+document.getElementById('modelo2').value, ubicacion); return false;
+	 }
 </script>
 <title>REPORTES</title>
 
@@ -29,7 +37,7 @@
 	
 	<div class="card">
 	  <div class="card-header" style="background-color: #37bd004f;">
-	    CANTIDAD DE VENTAS REALIZADAS POR VENDEDOR y MARCA
+	    CANTIDAD DE VENTAS REALIZADAS MENSUALMENTE POR VENDEDOR y MARCA 
 	  </div>
 	  <div class="card-body">
 	    <div class="form-group my-2 col-6">
@@ -68,19 +76,19 @@
 	
 	<div class="card mt-4">
 	  <div class="card-header" style="background-color: #37bd004f;">
-	    GANANCIAS OBTENIDAS POR MARCA y MODELO
+	    GANANCIAS OBTENIDAS MENSUALES POR MARCA y MODELO
 	  </div>
 	  <div class="card-body">
 	    <div class="form-group my-2 col-6">
 			<label>Rango de Fechas: </label>
 			<div class="input-group">
-				<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
-				<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaDesde1" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaHasta1" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
 			</div>
 		</div>
 		<div class="form-group mb-2 col-6">
 			<label>Marca:</label>
-			<select class="form-select"  aria-label="Default select example">
+			<select class="form-select"  aria-label="Default select example" id="marca1">
 			  <option value="" hidden>Seleccione un marca</option>
 			  <option th:each="marca:${listMarcas}"
 			  		th:value="${marca.id}"
@@ -91,7 +99,7 @@
 		</div>
 		<div class="form-group mb-2 col-6">
 			<label>Modelo:</label>
-			<select class="form-select"  aria-label="Default select example">
+			<select class="form-select"  aria-label="Default select example" id="modelo1">
 			  <option value="" hidden>Seleccione un modelo</option>
 			  <option th:each="modelos:${listModelo}"
 			  		th:value="${modelos.id}"
@@ -100,26 +108,26 @@
 			  
 			</select>
 		</div>
-	    <a href="#" class="btn" style="background-color: #37bd009e;">Generar reporte</a>
+		<button onClick="abrir_popup1('reporteGanancia', '_blank'); false" class="btn btn-default" style="background-color: #37bd009e;">Generar reporte</button>
 	  </div>
 	</div>
 	
 	
 	<div class="card mt-4">
 	  <div class="card-header" style="background-color: #37bd004f;">
-	    MONTO TOTAL VENDIDO POR MARCA y MODELO
+	    MONTO TOTAL VENDIDO MENSUAL POR MARCA y MODELO
 	  </div>
 	  <div class="card-body">
 	    <div class="form-group my-2 col-6">
 			<label>Rango de Fechas: </label>
 			<div class="input-group">
-				<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
-				<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaDesde2" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
+				<input class="form-control" id="fechaHasta2" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
 			</div>
 		</div>
 		<div class="form-group mb-2 col-6">
 			<label>Marca:</label>
-			<select class="form-select"  aria-label="Default select example">
+			<select class="form-select"  aria-label="Default select example" id="marca2">
 			  <option value="" hidden>Seleccione un marca</option>
 			  <option th:each="marca:${listMarcas}"
 			  		th:value="${marca.id}"
@@ -130,7 +138,7 @@
 		</div>
 		<div class="form-group mb-2 col-6">
 			<label>Modelo:</label>
-			<select class="form-select"  aria-label="Default select example">
+			<select class="form-select"  aria-label="Default select example" id="modelo2">
 			  <option value="" hidden>Seleccione un modelo</option>
 			  <option th:each="modelos:${listModelo}"
 			  		th:value="${modelos.id}"
@@ -139,7 +147,7 @@
 			  
 			</select>
 		</div>
-	    <a href="#" class="btn" style="background-color: #37bd009e;">Generar reporte</a>
+	    <button onClick="abrir_popup2('reporteTotal', '_blank'); false" class="btn btn-default" style="background-color: #37bd009e;">Generar reporte</button>
 	  </div>
 	</div>
 	
