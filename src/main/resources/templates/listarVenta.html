@@ -19,51 +19,49 @@
 			<a th:href="@{/menu}" class="btn btn-warning"><i class="fas fa-angle-double-left"></i> Volver</a>
 		</div>
 		
-		<label class="form-label">FILTRO POR MODELO</label>
-		<div class="input-group my-3" style="width: 30%;">
-			<div class="input-group-prepend">
-				<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
+		<div class="row">
+			<div class="col-6">
+				<!-- FILTRO POR MODELO -->
+				<label class="form-label">FILTRO POR MODELO</label>
+				<div class="input-group my-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
+					</div>
+					<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+				</div>
+				
+				<!-- FILTRO POR CLIENTE -->
+				<label class="form-label">FILTRO POR CLIENTE</label>
+				<div class="input-group my-3" >
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
+					</div>
+					<input class="form-control" id="myInput1" type="text" placeholder="Buscar..">
+				</div>
+				
 			</div>
-			<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
-		</div>
-		<label class="form-label">FILTRO POR CLIENTE</label>
-		<div class="input-group my-3" style="width: 30%;">
-			<div class="input-group-prepend">
-				<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
-			</div>
-			<input class="form-control" id="myInput1" type="text" placeholder="Buscar..">
-		</div>
-		<label class="form-label">FILTRO POR VENDEDOR</label>
-		<div class="input-group my-3" style="width: 30%;">
-			<div class="input-group-prepend">
-				<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
-			</div>
-			<input class="form-control" id="myInput2" type="text" placeholder="Buscar..">
-		</div>
-		
-		<!--
-		FILTRO POR COMBO BOX (POSIBLE ELIMINAR)
-		<div class="col-sm-6">
-			<div class="form-group">
-				<label class="form-label">CLIENTE</label>
-				<select class="form-select" required aria-label="Default select example" id='cliente' onchange='getCliente(event)' >
-				  <option value="" hidden>Seleccione el cliente</option>
-				  <option th:each="clientes:${listCliente}"
-				  		th:nombre="${clientes.nombre}"
-				  		th:value="${clientes.id}"
-				  		th:text="${clientes.nombre}"
-				  />
-				</select>
-				<div class="invalid-feedback">Por favor selesccione un cliente.</div>
-			</div>
-		</div>-->
-		<div class="form-group">
-			<label>Rango de Fechas: </label>
-			<div class="input-group my-3" style="width: 30%;">
-				<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
-				<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+			
+			<div class="col-6">
+				<!-- FILTRO POR RANGO DE FECHAS -->
+				<div class="form-group">
+					<label>Rango de Fechas: </label>
+					<div class="input-group my-3">
+						<input class="form-control" id="fechaDesde" type="date" placeholder="Fecha Desde..." onChange="cambioFecha()">
+						<input class="form-control" id="fechaHasta" type="date" placeholder="Fecha Hasta..." onChange="cambioFecha()">
+					</div>
+				</div>
+				
+				<!-- FILTRO PO VENDEDOR -->
+				<label class="form-label">FILTRO POR VENDEDOR</label>
+				<div class="input-group my-3" >
+					<div class="input-group-prepend">
+						<span class="input-group-text" style="background-color: #c1ebb0;" ><i class="fas fa-search"></i></span>
+					</div>
+					<input class="form-control" id="myInput2" type="text" placeholder="Buscar..">
+				</div>		
 			</div>
 		</div>
+
 		<table class="table">
 			<thead>
 			<tr>
